@@ -1,0 +1,144 @@
+---
+title: "Hockey"
+author: "YG"
+date: "2025-03-24"
+categories: [analysis]
+image: "image.jpg"
+---
+
+```{r, 'libraries'}
+suppressMessages({
+  library(here)
+  library(dplyr)
+  library(tidyr)
+  library(readxl)
+  library(stringr)
+  library(ggplot2)})
+```
+
+#data
+```{r}
+award <- read_excel("data/award.xlsx") |>
+  rename("voter" = "Voter",
+         "award" = "Award",
+         "player" = "Player",
+         "rank" = "Ranking")
+barrie <- read_excel("data/Barrie.xlsx") |>
+  rename("voter" = "Voter",
+         "award" = "Award",
+         "player" = "Player",
+         "rank" = "Rank")
+betsy <- read_excel("data/BetsyChurchHockeyBallot.xlsx") |>
+  rename("voter" = "Name",
+         "award" = "Award",
+         "player" = "Player Name",
+         "rank" = "Nomination position")
+ranking <- read.csv("data/Hockey_Ranking_CS.csv") |>
+  rename("voter" = "Voter",
+         "award" = "Award",
+         "player" = "Player",
+         "rank" = "Rank")
+ian <- read_excel("data/IAN HOCKEY NOMINATIONS.xlsx") |>
+  rename("voter" = "Voter",
+         "award" = "Trophy",
+         "player" = "Player",
+         "rank" = "Rank")
+john <- read.csv("data/JohnCambareriHockeyAwards.csv") |>
+  mutate(voter = "John") |>
+  rename("award" = "Award",
+         "player" = "Player",
+         "rank" = "Place")
+marwa <- read_excel("data/marwa.xlsx") |>
+  rename("voter" = "Voter",
+         "award" = "Award",
+         "player" = "Player",
+         "rank" = "Rank")
+nhl <- read_excel("data/NHL award ballot HT.xlsx") |>
+  rename("voter" = "Voter",
+         "award" = "Award",
+         "player" = "Player",
+         "rank" = "Rank")
+sharon <- readRDS("data/sharon_ballot.rds") |>
+  rename("voter" = "Voter",
+         "award" = "Award",
+         "player" = "Player",
+         "rank" = "Rank")
+nhlballet <- read_excel("data/NHL_Award_Ballet.xlsx") |>
+  rename(voter = Voters,
+         rank = Rank) |>
+  mutate(voter = "Priya")|>
+  pivot_longer(cols = -c(voter, rank), names_to = "award", values_to = "player")
+```
+
+##Nominations combined 
+```{r}
+c <- bind_rows(award, barrie, betsy, ian, john, marwa, nhl, ranking, sharon, nhlballet) |>
+  mutate(points = case_when(
+    rank == 1 ~ 10,
+    rank == 2 ~ 7,
+    rank == 3 ~ 5,
+    rank == 4 ~ 3,
+    rank == 5 ~ 1,
+  )) |>
+  mutate(award = str_to_lower(award)) |>  # Convert to lowercase for easier matching
+  mutate(award = case_when(
+    str_detect(award, "calder") ~ "Calder Memorial",
+    str_detect(award, "hart|heart") ~ "Hart Memorial",
+    str_detect(award, "norris") ~ "James Norris Memorial",
+    str_detect(award, "selke|frank") ~ "Frank Selke Memorial",
+    str_detect(award, "byng|btng|lady") ~ "Lady Byng Memorial",
+    str_detect(award, "vezina") ~ "Vezina",
+    TRUE ~ award)) # Keep original if no match
+
+overall_player_ranking <- c |>
+  group_by(player) |>
+  summarise(total_points = sum(points, na.rm = TRUE)) |>
+  arrange(desc(total_points))
+
+```
+
+##By Award
+###Calder Memorial
+```{r}
+Calder <- c |>
+  filter(award == "Calder Memorial") |>
+  group_by(player) |>
+  summarise(total_points = sum(points, na.rm = TRUE)) |>
+  arrange(desc(total_points))
+```
+
+###Hart Memorial
+```{r}
+Hart <- c |>
+  filter(award == "Hart Memorial") |>
+  group_by(player) |>
+  summarise(total_points = sum(points, na.rm = TRUE)) |>
+  arrange(desc(total_points))
+```
+
+###James Norris Memorial
+```{r}
+Norris <- c |>
+  filter(award == "James Norris Memorial") |>
+  group_by(player) |>
+  summarise(total_points = sum(points, na.rm = TRUE)) |>
+  arrange(desc(total_points))
+```
+
+###Frank Selke Memorial
+```{r}
+Selke <- c |>
+  filter(award == "Frank Selke Memorial") |>
+  group_by(player) |>
+  summarise(total_points = sum(points, na.rm = TRUE)) |>
+  arrange(desc(total_points))
+```
+
+###Lady Byng Memorial
+```{r}
+Lady <- c |>
+  filter(award == "Lady Byng Memorial") |>
+  group_by(player) |>
+  summarise(total_points = sum(points, na.rm = TRUE)) |>
+  arrange(desc(total_points))
+```

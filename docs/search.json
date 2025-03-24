@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this blog"
+  },
+  {
+    "objectID": "posts/Hockey_Ballot/hockey.html",
+    "href": "posts/Hockey_Ballot/hockey.html",
+    "title": "Hockey",
+    "section": "",
+    "text": "suppressMessages({\n  library(here)\n  library(dplyr)\n  library(tidyr)\n  library(readxl)\n  library(stringr)\n  library(ggplot2)})\n\n#data\n\naward &lt;- read_excel(\"data/award.xlsx\") |&gt;\n  rename(\"voter\" = \"Voter\",\n         \"award\" = \"Award\",\n         \"player\" = \"Player\",\n         \"rank\" = \"Ranking\")\nbarrie &lt;- read_excel(\"data/Barrie.xlsx\") |&gt;\n  rename(\"voter\" = \"Voter\",\n         \"award\" = \"Award\",\n         \"player\" = \"Player\",\n         \"rank\" = \"Rank\")\nbetsy &lt;- read_excel(\"data/BetsyChurchHockeyBallot.xlsx\") |&gt;\n  rename(\"voter\" = \"Name\",\n         \"award\" = \"Award\",\n         \"player\" = \"Player Name\",\n         \"rank\" = \"Nomination position\")\nranking &lt;- read.csv(\"data/Hockey_Ranking_CS.csv\") |&gt;\n  rename(\"voter\" = \"Voter\",\n         \"award\" = \"Award\",\n         \"player\" = \"Player\",\n         \"rank\" = \"Rank\")\nian &lt;- read_excel(\"data/IAN HOCKEY NOMINATIONS.xlsx\") |&gt;\n  rename(\"voter\" = \"Voter\",\n         \"award\" = \"Trophy\",\n         \"player\" = \"Player\",\n         \"rank\" = \"Rank\")\njohn &lt;- read.csv(\"data/JohnCambareriHockeyAwards.csv\") |&gt;\n  mutate(voter = \"John\") |&gt;\n  rename(\"award\" = \"Award\",\n         \"player\" = \"Player\",\n         \"rank\" = \"Place\")\nmarwa &lt;- read_excel(\"data/marwa.xlsx\") |&gt;\n  rename(\"voter\" = \"Voter\",\n         \"award\" = \"Award\",\n         \"player\" = \"Player\",\n         \"rank\" = \"Rank\")\nnhl &lt;- read_excel(\"data/NHL award ballot HT.xlsx\") |&gt;\n  rename(\"voter\" = \"Voter\",\n         \"award\" = \"Award\",\n         \"player\" = \"Player\",\n         \"rank\" = \"Rank\")\nsharon &lt;- readRDS(\"data/sharon_ballot.rds\") |&gt;\n  rename(\"voter\" = \"Voter\",\n         \"award\" = \"Award\",\n         \"player\" = \"Player\",\n         \"rank\" = \"Rank\")\nnhlballet &lt;- read_excel(\"data/NHL_Award_Ballet.xlsx\") |&gt;\n  rename(voter = Voters,\n         rank = Rank) |&gt;\n  mutate(voter = \"Priya\")|&gt;\n  pivot_longer(cols = -c(voter, rank), names_to = \"award\", values_to = \"player\")\n\n##Nominations combined\n\nc &lt;- bind_rows(award, barrie, betsy, ian, john, marwa, nhl, ranking, sharon, nhlballet) |&gt;\n  mutate(points = case_when(\n    rank == 1 ~ 10,\n    rank == 2 ~ 7,\n    rank == 3 ~ 5,\n    rank == 4 ~ 3,\n    rank == 5 ~ 1,\n  )) |&gt;\n  mutate(award = str_to_lower(award)) |&gt;  # Convert to lowercase for easier matching\n  mutate(award = case_when(\n    str_detect(award, \"calder\") ~ \"Calder Memorial\",\n    str_detect(award, \"hart|heart\") ~ \"Hart Memorial\",\n    str_detect(award, \"norris\") ~ \"James Norris Memorial\",\n    str_detect(award, \"selke|frank\") ~ \"Frank Selke Memorial\",\n    str_detect(award, \"byng|btng|lady\") ~ \"Lady Byng Memorial\",\n    str_detect(award, \"vezina\") ~ \"Vezina\",\n    TRUE ~ award)) # Keep original if no match\n\noverall_player_ranking &lt;- c |&gt;\n  group_by(player) |&gt;\n  summarise(total_points = sum(points, na.rm = TRUE)) |&gt;\n  arrange(desc(total_points))\n\n##By Award ###Calder Memorial\n\nCalder &lt;- c |&gt;\n  filter(award == \"Calder Memorial\") |&gt;\n  group_by(player) |&gt;\n  summarise(total_points = sum(points, na.rm = TRUE)) |&gt;\n  arrange(desc(total_points))\n\n###Hart Memorial\n\nHart &lt;- c |&gt;\n  filter(award == \"Hart Memorial\") |&gt;\n  group_by(player) |&gt;\n  summarise(total_points = sum(points, na.rm = TRUE)) |&gt;\n  arrange(desc(total_points))\n\n###James Norris Memorial\n\nNorris &lt;- c |&gt;\n  filter(award == \"James Norris Memorial\") |&gt;\n  group_by(player) |&gt;\n  summarise(total_points = sum(points, na.rm = TRUE)) |&gt;\n  arrange(desc(total_points))\n\n###Frank Selke Memorial\n\nSelke &lt;- c |&gt;\n  filter(award == \"Frank Selke Memorial\") |&gt;\n  group_by(player) |&gt;\n  summarise(total_points = sum(points, na.rm = TRUE)) |&gt;\n  arrange(desc(total_points))\n\n###Lady Byng Memorial\n\nLady &lt;- c |&gt;\n  filter(award == \"Lady Byng Memorial\") |&gt;\n  group_by(player) |&gt;\n  summarise(total_points = sum(points, na.rm = TRUE)) |&gt;\n  arrange(desc(total_points))"
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "posts/Hockey_Ballot/index.html",
+    "href": "posts/Hockey_Ballot/index.html",
+    "title": "Post With Code",
+    "section": "",
+    "text": "This is a post with executable code.\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "BCB520_Blog",
+    "section": "",
+    "text": "Post With Code\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 24, 2025\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nHockey\n\n\n\n\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 24, 2025\n\n\nYG\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nMar 21, 2025\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
+  }
+]
