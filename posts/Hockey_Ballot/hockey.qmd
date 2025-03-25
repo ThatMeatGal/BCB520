@@ -105,6 +105,8 @@ Calder <- c |>
   group_by(player) |>
   summarise(total_points = sum(points, na.rm = TRUE)) |>
   arrange(desc(total_points))
+
+head(Calder)
 ```
 
 ### Hart Memorial
@@ -114,6 +116,8 @@ Hart <- c |>
   group_by(player) |>
   summarise(total_points = sum(points, na.rm = TRUE)) |>
   arrange(desc(total_points))
+
+head(Hart)
 ```
 
 ### James Norris Memorial
@@ -123,6 +127,8 @@ Norris <- c |>
   group_by(player) |>
   summarise(total_points = sum(points, na.rm = TRUE)) |>
   arrange(desc(total_points))
+
+head(Norris)
 ```
 
 ### Frank Selke Memorial
@@ -132,6 +138,8 @@ Selke <- c |>
   group_by(player) |>
   summarise(total_points = sum(points, na.rm = TRUE)) |>
   arrange(desc(total_points))
+
+head(Selke)
 ```
 
 ### Lady Byng Memorial
@@ -141,4 +149,6 @@ Lady <- c |>
   group_by(player) |>
   summarise(total_points = sum(points, na.rm = TRUE)) |>
   arrange(desc(total_points))
+
+head(Lady)
 ```
