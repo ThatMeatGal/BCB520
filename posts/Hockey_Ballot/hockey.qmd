@@ -16,7 +16,7 @@ suppressMessages({
   library(ggplot2)})
 ```
 
-#data
+# Data
 ```{r}
 award <- read_excel("data/award.xlsx") |>
   rename("voter" = "Voter",
@@ -70,7 +70,7 @@ nhlballet <- read_excel("data/NHL_Award_Ballet.xlsx") |>
   pivot_longer(cols = -c(voter, rank), names_to = "award", values_to = "player")
 ```
 
-##Nominations combined 
+## Nominations combined 
 ```{r}
 c <- bind_rows(award, barrie, betsy, ian, john, marwa, nhl, ranking, sharon, nhlballet) |>
   mutate(points = case_when(
@@ -97,8 +97,8 @@ overall_player_ranking <- c |>
 
 ```
 
-##By Award
-###Calder Memorial
+## By Award
+### Calder Memorial
 ```{r}
 Calder <- c |>
   filter(award == "Calder Memorial") |>
@@ -107,7 +107,7 @@ Calder <- c |>
   arrange(desc(total_points))
 ```
 
-###Hart Memorial
+### Hart Memorial
 ```{r}
 Hart <- c |>
   filter(award == "Hart Memorial") |>
@@ -116,7 +116,7 @@ Hart <- c |>
   arrange(desc(total_points))
 ```
 
-###James Norris Memorial
+### James Norris Memorial
 ```{r}
 Norris <- c |>
   filter(award == "James Norris Memorial") |>
@@ -125,7 +125,7 @@ Norris <- c |>
   arrange(desc(total_points))
 ```
 
-###Frank Selke Memorial
+### Frank Selke Memorial
 ```{r}
 Selke <- c |>
   filter(award == "Frank Selke Memorial") |>
@@ -134,7 +134,7 @@ Selke <- c |>
   arrange(desc(total_points))
 ```
 
-###Lady Byng Memorial
+### Lady Byng Memorial
 ```{r}
 Lady <- c |>
   filter(award == "Lady Byng Memorial") |>
