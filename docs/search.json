@@ -28,17 +28,10 @@
     "text": "By Award\n\nCalder Memorial\n\nCalder &lt;- c |&gt;\n  filter(award == \"Calder Memorial\") |&gt;\n  group_by(player) |&gt;\n  summarise(total_points = sum(points, na.rm = TRUE)) |&gt;\n  arrange(desc(total_points))\n\nhead(Calder)\n\n# A tibble: 6 × 2\n  player           total_points\n  &lt;chr&gt;                   &lt;dbl&gt;\n1 Kirill Marchenko           45\n2 Wyatt Johnston             40\n3 Marco Rossi                17\n4 Dylan Holloway             16\n5 Bobby Brink                10\n6 Jake Sanders               10\n\n\n\n\nHart Memorial\n\nHart &lt;- c |&gt;\n  filter(award == \"Hart Memorial\") |&gt;\n  group_by(player) |&gt;\n  summarise(total_points = sum(points, na.rm = TRUE)) |&gt;\n  arrange(desc(total_points))\n\nhead(Hart)\n\n# A tibble: 6 × 2\n  player            total_points\n  &lt;chr&gt;                    &lt;dbl&gt;\n1 Leon Draisaitl              35\n2 Nathan MacKinnon            22\n3 Nikita Kucherov             20\n4 David Pastrnak              13\n5 Connor Hellebuyck           10\n6 Ekholm-Bouchard             10\n\n\n\n\nJames Norris Memorial\n\nNorris &lt;- c |&gt;\n  filter(award == \"James Norris Memorial\") |&gt;\n  group_by(player) |&gt;\n  summarise(total_points = sum(points, na.rm = TRUE)) |&gt;\n  arrange(desc(total_points))\n\nhead(Norris)\n\n# A tibble: 6 × 2\n  player       total_points\n  &lt;chr&gt;               &lt;dbl&gt;\n1 Ian Cole               18\n2 Quinn Hughes           13\n3 Cale Makar             11\n4 Aaron Ekblad           10\n5 Cale Maker             10\n6 Cale Makar             10\n\n\n\n\nFrank Selke Memorial\n\nSelke &lt;- c |&gt;\n  filter(award == \"Frank Selke Memorial\") |&gt;\n  group_by(player) |&gt;\n  summarise(total_points = sum(points, na.rm = TRUE)) |&gt;\n  arrange(desc(total_points))\n\nhead(Selke)\n\n# A tibble: 6 × 2\n  player            total_points\n  &lt;chr&gt;                    &lt;dbl&gt;\n1 Brandon Tanev               20\n2 Jackson Blake               17\n3 Nathan MacKinnon            15\n4 Alex Tuch                   14\n5 Fabian Zetterlund           14\n6 Cale Makar                  10\n\n\n\n\nLady Byng Memorial\n\nLady &lt;- c |&gt;\n  filter(award == \"Lady Byng Memorial\") |&gt;\n  group_by(player) |&gt;\n  summarise(total_points = sum(points, na.rm = TRUE)) |&gt;\n  arrange(desc(total_points))\n\nhead(Lady)\n\n# A tibble: 6 × 2\n  player           total_points\n  &lt;chr&gt;                   &lt;dbl&gt;\n1 William Karlsson           17\n2 Jack Eichel                14\n3 Alex Vlasic                10\n4 Brayed Point               10\n5 Cale Makar                 10\n6 Cale Makar                 10"
   },
   {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Welcome To My Blog",
-    "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "BCB520_Blog",
     "section": "",
-    "text": "Hockey\n\n\n\n\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 24, 2025\n\n\nYG\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nMar 21, 2025\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
+    "text": "Hockey\n\n\n\n\n\n\nanalysis\n\n\n\n\n\n\n\n\n\nMar 24, 2025\n\n\nYG\n\n\n\n\n\n\nNo matching items"
   }
 ]
