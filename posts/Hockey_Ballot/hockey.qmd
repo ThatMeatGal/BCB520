@@ -5,7 +5,7 @@ date: "2025-03-24"
 categories: [analysis]
 image: "image.jpg"
 ---
-
+![](2_puppy_hockey.jpg)
 ```{r, 'libraries'}
 suppressMessages({
   library(here)
