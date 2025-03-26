@@ -5,7 +5,7 @@ date: "2025-03-24"
 categories: [analysis]
 image: "image.jpg"
 ---
-![](2_puppy_hockey.jpg){height=100}
+![](2_puppy_hockey.jpg){width=50%}
 ```{r, 'libraries'}
 suppressMessages({
   library(here)
